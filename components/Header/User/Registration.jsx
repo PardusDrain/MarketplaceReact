@@ -1,9 +1,10 @@
 import React from 'react'
-import './Registration.css'
+import '../ModalWindow/ModalWindow.css'
 
 export default function Registration() {
   return (
-    <>
-    </>
+   <>
+
+   </>
   )
 }
