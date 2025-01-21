@@ -1,3 +1,16 @@
 main{
     min-height: calc(100vh - 70px - 70px);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+   place-items: center;
+    
+}
+img{
+    width: 100%;
+    border-radius: 30%;
+   
+}
+.product{
+    height: 350px;
 }

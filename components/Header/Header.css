@@ -19,20 +19,9 @@ header{
     border-radius: 40px;
     padding:5px;
     cursor: pointer;
+    transition: all .2s;
 }
 .userB{
     display: flex;
     gap: 5px;
-}
-.userB button{
-    background-color: rgb(209, 238, 15);
-    color: black;
-    border-radius: 60px;
-    padding: 10px;
-    font-weight: 300;
-    font-size: 14px;
-}
-.userB button:hover{
-    background-color: black;
-    color: white;
 }

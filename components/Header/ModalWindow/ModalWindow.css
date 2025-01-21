@@ -22,10 +22,11 @@
     opacity: .4;
 }
 .modalIn{
+    width: 100px;
     background-color: rgb(209, 238, 15);
     color: black;
-    border-radius: 40px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 5px;
     font-weight: 300;
     font-size: 14px;
 }
