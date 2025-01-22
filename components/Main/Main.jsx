@@ -46,7 +46,8 @@ export default function Main() {
       {PRODUCTLIST.map((productItem) =>(
         <div className="product">
           <img src={productItem.img} alt="" />
-          <p>{productItem.productName}</p>
+          <p className='itemName'>{productItem.productName}</p>
+          <p className='itemPrice'>{productItem.price}</p>
           <button className='orderB'>В корзину</button>
         </div>
       ) )}
