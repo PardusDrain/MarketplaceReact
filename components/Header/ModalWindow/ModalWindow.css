@@ -4,13 +4,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     position: absolute; 
     top: 45%;
     left: 25%;
     background-color: rgb(117, 44, 186);
     border-radius: 10px;
-    min-height: 120px;
+    min-height: 135px;
 }
 .echo{
     height:100vh;
@@ -22,7 +22,7 @@
     opacity: .4;
 }
 .modalIn{
-    width: 100px;
+    width: 70%;
     background-color: rgb(209, 238, 15);
     color: black;
     border-radius: 20px;
