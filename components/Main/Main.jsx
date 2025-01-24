@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './Main.css'
 
 
 export default function Main() {
- const [PRODUCTLIST] = useState([
+ const [productList, setProductList] = useState([
   {id:1,
   productName:'Товар',
   img: 'components/Main/images.jpg',
@@ -43,7 +43,7 @@ export default function Main() {
   return (
    <>
    <main>
-      {PRODUCTLIST.map((productItem) =>(
+      {productList.map((productItem) =>(
         <div className="product">
           <img src={productItem.img} alt="" />
           <p className='itemName'>{productItem.productName}</p>

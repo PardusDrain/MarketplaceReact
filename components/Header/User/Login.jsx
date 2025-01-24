@@ -10,7 +10,18 @@ export default function Login() {
       loginDataL: loginValueL,
       passwordDataL: passwordValueL
     }
-    debugger
+    const LogAPI = 'http://localhost:9001/login'
+    fetch(LogAPI, {
+     method: 'POST', 
+     headers:{
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(userDataL)
+    })
+    .then(result => result.JSON())
+    .then((result) => {
+     console.log(result)
+    })
   }
   return (
    <>

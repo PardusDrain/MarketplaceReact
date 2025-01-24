@@ -11,6 +11,7 @@ function RegProcedure(){
       passwordDataR: passwordValueR,
       emailDataR: emailValueR
     }
+    console.log(userDataR)
     const RegAPI = 'http://localhost:9001/registration'
      fetch(RegAPI, {
       method: 'POST', 
