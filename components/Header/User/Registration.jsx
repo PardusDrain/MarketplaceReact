@@ -20,7 +20,7 @@ function RegProcedure(){
       },
       body: JSON.stringify(userDataR)
      })
-     .then(result => result.JSON())
+     .then(result => result.json())
      .then((result) => {
       console.log(result)
      })

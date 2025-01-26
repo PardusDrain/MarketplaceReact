@@ -18,7 +18,7 @@ export default function Login() {
      },
      body: JSON.stringify(userDataL)
     })
-    .then(result => result.JSON())
+    .then(result => result.json())
     .then((result) => {
      console.log(result)
     })

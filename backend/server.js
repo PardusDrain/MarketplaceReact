@@ -14,6 +14,27 @@ APP.post('/registration', (req) => {
 APP.post('/login', (req) => {
   console.log(req.body)
 } )
+APP.get('/products', (req, res) => {
+  const prd = [
+    {id:10,
+      productName:'Товар',
+      price: '200p',
+      },
+      {id:11,
+        productName:'Товар',
+        price: '200p',
+        },
+        {id:12,
+          productName:'Товар',
+          price: '200p',
+          },
+          {id:13,
+            productName:'Товар',  
+            price: '200p'
+            }
+  ]
+  res.json({data: prd})
+} )
 
 const start = () => {
  try{APP.listen(PORT, () => console.log(`Сервер запушен на ${PORT} порте`))} catch (error){
