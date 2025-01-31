@@ -15,8 +15,9 @@ APP.post('/login', (req) => {
   console.log(req.body)
 } )
 APP.get('/products', (req, res) => {
-  const prd = [
+  const serverProduct = [
     {id:10,
+      img: '../components/Main/images.jpg',
       productName:'Товар',
       price: '200p',
       },
@@ -33,7 +34,7 @@ APP.get('/products', (req, res) => {
             price: '200p'
             }
   ]
-  res.json({data: prd})
+  res.json({data: serverProduct})
 } )
 
 const start = () => {
