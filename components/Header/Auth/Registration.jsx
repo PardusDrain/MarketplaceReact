@@ -3,13 +3,13 @@ import '../ModalWindow/ModalWindow.css'
 
 export default function Registration() {
 function RegProcedure(){
-    const loginValueR = document.getElementById('putLoginR').value
-    const passwordValueR = document.getElementById('putPasswordR').value
-    const emailValueR = document.getElementById('putEmailR').value
+    const login = document.getElementById('putLoginR').value
+    const password = document.getElementById('putPasswordR').value
+    const email = document.getElementById('putEmailR').value
     const userDataR ={
-      loginDataR: loginValueR,
-      passwordDataR: passwordValueR,
-      emailDataR: emailValueR
+      login: login,
+      password: password,
+      email: email
     }
     console.log(userDataR)
     const RegAPI = 'http://localhost:9001/registration'

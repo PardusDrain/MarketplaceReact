@@ -4,11 +4,11 @@ import '../ModalWindow/ModalWindow.css'
 export default function Login() {
   
   function LogProcedure(){
-    const loginValueL = document.getElementById('putLoginL').value
-    const passwordValueL = document.getElementById('putPasswordL').value
+    const login = document.getElementById('putLoginL').value
+    const password = document.getElementById('putPasswordL').value
     const userDataL ={
-      loginDataL: loginValueL,
-      passwordDataL: passwordValueL
+      login: login,
+      password: password
     }
     const LogAPI = 'http://localhost:9001/login'
     fetch(LogAPI, {
@@ -21,6 +21,7 @@ export default function Login() {
     .then(result => result.json())
     .then((result) => {
      console.log(result)
+     localStorage.setItem('token', result.token)
     })
   }
   return (

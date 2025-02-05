@@ -9,18 +9,17 @@ useEffect(() => {
     fetch(ProductAPI)
     .then(result => result.json())
     .then((result) => {
-     console.log(result)
-     setProductList(result.data)
+     setProductList(result.productFetch)
     })
 }, [])
   return (
    <>
    <main>
       {productList.map((productItem) =>(
-        <div className="product" key={productItem.id}>
+        <div className="product" key={productItem._id}>
           <img src={productItem.img} alt="" />
           <p className='itemName'>{productItem.productName}</p>
-          <p className='itemPrice'>{productItem.price}</p>
+          <p className='itemPrice'>{`${productItem.price}₽`}</p>
           <button className='orderB'>В корзину</button>
         </div>
       ) )}
