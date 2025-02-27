@@ -15,14 +15,16 @@ useEffect(() => {
   return (
    <>
    <main>
+    <div className="imageWrapper">
       {productList.map((productItem) =>(
         <div className="product" key={productItem._id}>
-          <img src={`/images/${productItem.img}`} className='productImg' alt="" />
+          <img src={`./${productItem.img}`} alt="" />
           <p className='itemName'>{productItem.productName}</p>
           <p className='itemPrice'>{`${productItem.price}₽`}</p>
           <button className='orderB'>В корзину</button>
         </div>
       ) )}
+      </div>
    </main>
    </>
   )
