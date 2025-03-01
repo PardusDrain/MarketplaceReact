@@ -6,12 +6,15 @@ import Basket from './components/Basket/Basket.jsx'
 import ModalWindow from './components/Header/ModalWindow/ModalWindow.jsx'
 import Login from './components/Header/Auth/Login.jsx'
 import Registration from './components/Header/Auth/Registration.jsx'
+import Profile from './components/Profile/Profile.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('Main')
   const screens = {
     Main: <Main/>,
     Basket: <Basket/>,
+    Profile: <Profile/>,
+
     
   }
   const [modalWindow, setModalWindow] = useState(null)

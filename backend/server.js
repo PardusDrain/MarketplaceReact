@@ -8,6 +8,8 @@ const User = require('./UserSchema')
 const ProductDB = require('./ProductSchema')
 const JWT = require('jsonwebtoken')
 const {secretKey} = require('./config')
+const ProfileSchema = require('./ProfileSchema')
+
 
 const generateAccessToken = (id) => {
   const payload = {id}
@@ -42,6 +44,14 @@ APP.post('/login', async (req, res) => {
 APP.get('/products',  async (req, res) => {
   const serverProduct = await ProductDB.find()
   res.json({productFetch: serverProduct})
+} )
+APP.get('/profile',  async (req, res) => {
+  const profile = await ProfileSchema.findOne({login:req.query.login})
+   res.json(profile)
+} )
+APP.post('/update-profile',  async (req, res) => {
+  const resData = await ProfileSchema.findOneAndUpdate({ login: req.query.login }, req.body.profile, {upsert: true})
+  console.log(resData)
 } )
 const start = async() => {
  try{

@@ -8,6 +8,7 @@ export default function Header({setScreen, modalWindowOpened }) {
     <ul className='nav'>
       <li onClick={()=> setScreen('Main')}>Главная</li>
       <li onClick={()=> setScreen('Basket')}>Корзина</li>
+      <li onClick={()=> setScreen('Profile')}>Профиль</li>
     </ul>
     <div className='userB'>
       <button onClick={()=> modalWindowOpened('LoginWrapper')} className='enterB'>Войти</button>
