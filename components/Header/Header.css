@@ -1,8 +1,10 @@
+@import '../../adaptive.css';
+
 header{
     display: flex;
     height: 70px;
     align-items: center;
-   
+    
 }
 .nav{
     width: 100%;

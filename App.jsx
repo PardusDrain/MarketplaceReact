@@ -1,35 +1,39 @@
-import React, { useState } from 'react'
-import Header from './components/Header/Header.jsx'
-import Footer from './components/Footer/Footer.jsx'
-import Main from './components/Main/Main.jsx'
-import Basket from './components/Basket/Basket.jsx'
-import ModalWindow from './components/Header/ModalWindow/ModalWindow.jsx'
-import Login from './components/Header/Auth/Login.jsx'
-import Registration from './components/Header/Auth/Registration.jsx'
-import Profile from './components/Profile/Profile.jsx'
+import React, { useState } from 'react';
+import Header from './components/Header/Header.jsx';
+import Footer from './components/Footer/Footer.jsx';
+import Main from './components/Main/Main.jsx';
+import Basket from './components/Basket/Basket.jsx';
+import ModalWindow from './components/Header/ModalWindow/ModalWindow.jsx';
+import Login from './components/Header/Auth/Login.jsx';
+import Registration from './components/Header/Auth/Registration.jsx';
+import Profile from './components/Profile/Profile.jsx';
 
 export default function App() {
-  const [screen, setScreen] = useState('Main')
+  const [screen, setScreen] = useState('Main');
   const screens = {
-    Main: <Main/>,
-    Basket: <Basket/>,
-    Profile: <Profile/>,
-
-    
-  }
-  const [modalWindow, setModalWindow] = useState(null)
-  const modalWindows ={
-    LoginWrapper: <ModalWindow modalWindowClosed={setModalWindow}><Login/></ModalWindow>,
-    RegWrapper: <ModalWindow modalWindowClosed ={setModalWindow}><Registration/></ModalWindow>
-   }
+    Main: <Main />,
+    Basket: <Basket />,
+    Profile: <Profile />,
+  };
+  const [modalWindow, setModalWindow] = useState(null);
+  const modalWindows = {
+    LoginWrapper: (
+      <ModalWindow modalWindowClosed={setModalWindow}>
+        <Login />
+      </ModalWindow>
+    ),
+    RegWrapper: (
+      <ModalWindow modalWindowClosed={setModalWindow}>
+        <Registration />
+      </ModalWindow>
+    ),
+  };
   return (
     <>
-   {modalWindows[modalWindow]}
-    <Header setScreen = {setScreen} modalWindowOpened = {setModalWindow}/>
-   {screens[screen]}
-    <Footer/>
+      {modalWindows[modalWindow]}
+      <Header setScreen={setScreen} modalWindowOpened={setModalWindow} />
+      {screens[screen]}
+      <Footer />
     </>
-  )
+  );
 }
-
-

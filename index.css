@@ -1,4 +1,4 @@
-body{
+body {
   padding: 0;
   margin: 0;
   text-align: center;
@@ -9,8 +9,11 @@ body{
   background-color: #312f2f;
   font-synthesis: none;
   color: white;
+  background-image: url('/images/pattern.png');
+  background-size: 100vh;
+  overflow: hidden;
 }
-button{
+button {
   appearance: none;
   border: none;
   cursor: pointer;
@@ -21,12 +24,12 @@ button{
   font-weight: 300;
   font-size: 14px;
 }
-button:hover{
-    background-color: black;
-    color: white;
-    transition: all .2s;
+button:hover {
+  background-color: black;
+  color: white;
+  transition: all 0.2s;
 }
-input{
+input {
   appearance: none;
   margin: 0;
   padding: 0;

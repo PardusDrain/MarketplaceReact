@@ -1,23 +1,21 @@
-main{
-    min-height: calc(100vh - 70px - 70px);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 5px;
-    place-items: center;
-    background-image: url('../../public/images/pattern.png');
-    background-repeat: repeat;
-    background-position: center;
-    background-size: contain;
+@import '../../adaptive.css';
+
+main {
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  place-items: center;
 }
-.productImg{
-    width: 50%;
-    border-radius: 30%;
-    transition: all 0.3s;
+
+.productImg {
+  width: 50%;
+  border-radius: 30%;
+  transition: all 0.3s;
 }
-.productImg:hover{
-    width: 80%;
-    height: auto;
-    cursor: pointer;
-    transform: scale(1);
-    z-index: 1;
+.productImg:hover {
+  height: auto;
+  cursor: pointer;
+  transform: scale(1.5);
 }
