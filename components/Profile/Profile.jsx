@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 export default function Profile() {
   const [profile, setProfile] = useState();
   useEffect(() => {
-    const ProfileAPI = 'http://localhost:9001/profile?login=test';
+    const token = localStorage.getItem('token');
+    const ProfileAPI = 'http://localhost:9001/profile';
     fetch(ProfileAPI, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((result) => result.json())
@@ -16,11 +18,13 @@ export default function Profile() {
       });
   }, []);
   const onSubmit = () => {
-    const updateProfileAPI = 'http://localhost:9001/update-profile?login=test';
+    const token = localStorage.getItem('token');
+    const updateProfileAPI = 'http://localhost:9001/update-profile';
     fetch(updateProfileAPI, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ profile }),
     })

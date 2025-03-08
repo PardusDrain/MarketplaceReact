@@ -1,5 +1,5 @@
 // Тестовые данные (1000 продуктов)
-export const mockProducts = Array.from({ length: 8 }, (_, i) => ({
+export const mockProducts = Array.from({ length: 40 }, (_, i) => ({
   _id: i + 1,
   productName: `Тестовый продукт ${i + 1}`,
   price: Math.floor(Math.random() * 1000) + 100,
