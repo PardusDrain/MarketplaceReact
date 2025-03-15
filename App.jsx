@@ -1,3 +1,4 @@
+import { CartProvider } from './components/contexts/CartContext';
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
@@ -41,7 +42,7 @@ export default function App() {
     ),
   };
   return (
-    <>
+    <CartProvider>
       {modalWindows[modalWindow]}
       <Header
         setScreen={setScreen}
@@ -50,6 +51,6 @@ export default function App() {
       />
       {screens[screen]}
       <Footer />
-    </>
+    </CartProvider>
   );
 }
