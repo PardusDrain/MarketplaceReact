@@ -23,9 +23,9 @@ export default function Main() {
               ...p,
               price: Number(p.price) || 0,
               quantity: 1,
-              _id: Number(p._id) || Date.now(),
+              _id: p._id,
             }))
-            .filter((p) => !isNaN(p.price) && !isNaN(p._id)),
+            .filter((p) => !isNaN(p.price)),
         );
 
         // Synchronize counters with current product list
