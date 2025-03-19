@@ -1,32 +1,34 @@
-.modal{
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    position: absolute; 
-    top: 45%;
-    left: 25%;
-    background-color: rgb(117, 44, 186);
-    border-radius: 10px;
-    min-height: 135px;
+.modalAuth {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 30%;
+  left: 25%;
+  background-color: rgb(117, 44, 186);
+  border-radius: 10px;
+  min-height: 135px;
 }
-.echo{
-    height:100vh;
-    width: 100%;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    background-color: black;
-    opacity: .4;
+.echo {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  background-color: black;
+  opacity: 0.4;
 }
-.modalIn{
-    width: 70%;
-    background-color: rgb(209, 238, 15);
-    color: black;
-    border-radius: 20px;
-    padding: 5px;
-    font-weight: 300;
-    font-size: 14px;
+.modalIn {
+  width: 70%;
+  background-color: rgb(209, 238, 15);
+  color: black;
+  border-radius: 20px;
+  padding: 5px;
+  font-weight: 300;
+  font-size: 14px;
+}
+.upload-modal {
 }

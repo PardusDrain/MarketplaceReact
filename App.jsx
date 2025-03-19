@@ -8,13 +8,15 @@ import ModalWindow from './components/Header/ModalWindow/ModalWindow.jsx';
 import Login from './components/Header/Auth/Login.jsx';
 import Registration from './components/Header/Auth/Registration.jsx';
 import Profile from './components/Profile/Profile.jsx';
+import ProductUploader from './components/ProductUploader/ProductUploader.jsx';
 
 export default function App() {
   const [screen, setScreen] = useState('Main');
   const [isLoggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     onAuth();
-  }, []);
+    console.log('Auth status in App:', isLoggedIn);
+  }, [isLoggedIn]);
   const screens = {
     Main: <Main />,
     Basket: <Basket />,
@@ -50,6 +52,7 @@ export default function App() {
         isLoggedIn={isLoggedIn}
       />
       {screens[screen]}
+      <ProductUploader isLoggedIn={isLoggedIn} />
       <Footer />
     </CartProvider>
   );
