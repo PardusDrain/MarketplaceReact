@@ -21,9 +21,8 @@ const ProductUploader = ({ isLoggedIn }) => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('/products', data, {
+      await axios.post('/api/products', data, {
         headers: {
-          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
         onUploadProgress: (progressEvent) => {
@@ -45,15 +44,6 @@ const ProductUploader = ({ isLoggedIn }) => {
       setProgress(0);
     }
   };
-
-  // Debug auth status
-  console.log('Auth status:', isLoggedIn);
-
-  if (!isLoggedIn) {
-    console.log('ProductUploader: User not authenticated');
-    return null;
-  }
-
   return (
     <div className="product-uploader">
       <button
@@ -63,7 +53,7 @@ const ProductUploader = ({ isLoggedIn }) => {
         +
       </button>
 
-      <dialog id="upload-modal" className="modal" open={isModalOpen}>
+      <dialog id="upload-modal" className="uploaderEcho" open={isModalOpen}>
         <div className="modal-content">
           <h3>Добавить новый товар</h3>
 

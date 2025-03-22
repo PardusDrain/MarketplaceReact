@@ -9,8 +9,8 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #007bff;
-  color: white;
+  background-color: var(btn);
+  color: var(prmry);
   border: none;
   cursor: pointer;
   font-size: 24px;
@@ -19,46 +19,39 @@
 }
 
 .upload-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
-.modal {
-  border: none;
-  border-radius: 8px;
-  padding: 20px;
-  width: 400px;
-}
-
-.modal::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+.uploaderEcho::backdrop {
+  opacity: 0.4;
+  background-color: black;
 }
 
 .modal-content {
+  padding: 20px;
+  background-color: rgb(117, 44, 186);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  flex-wrap: wrap;
+  border-radius: 20px;
 }
 
-.modal-content input[type='text'],
-.modal-content input[type='number'],
-.modal-content input[type='file'] {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
+.modal-content input {
+  border-radius: 20px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .form-actions {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
-}
-
-button {
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
 }
 
 button[type='submit'] {

@@ -15,8 +15,7 @@ export default function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     onAuth();
-    console.log('Auth status in App:', isLoggedIn);
-  }, [isLoggedIn]);
+  }, []);
   const screens = {
     Main: <Main />,
     Basket: <Basket />,

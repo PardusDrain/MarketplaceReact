@@ -1,3 +1,7 @@
+:root {
+  --btn: rgb(209, 238, 15);
+  --prmry: ;
+}
 body {
   padding: 0;
   margin: 0;
@@ -13,17 +17,25 @@ body {
   background-position: center;
   background-repeat: repeat;
   background-size: 100vh;
+  z-index: 1;
+}
+dialog,
+input,
+button,
+input[type='file'] {
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  background: none;
+  border: none;
+  overflow: hidden;
 }
 button {
-  appearance: none;
-  border: none;
   cursor: pointer;
-  background-color: rgb(209, 238, 15);
+  background-color: var(--btn);
   color: black;
   border-radius: 60px;
   padding: 10px;
-  font-weight: 300;
-  font-size: 14px;
 }
 button:hover {
   background-color: black;
@@ -31,11 +43,9 @@ button:hover {
   transition: all 0.2s;
 }
 input {
-  appearance: none;
-  margin: 0;
-  padding: 0;
   font-family: inherit;
   text-align: inherit;
-  border-radius: 20px;
+  border-radius: 60px;
   height: 20px;
+  background-color: white;
 }

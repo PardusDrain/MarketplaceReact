@@ -29,9 +29,7 @@ export default function Login({ onAuth }) {
     <>
       <input type="text" placeholder="Логин" id="putLoginL" />
       <input type="password" placeholder="Пароль" id="putPasswordL" />
-      <button onClick={LogProcedure} className="modalIn">
-        Войти
-      </button>
+      <button onClick={LogProcedure}>Войти</button>
     </>
   );
 }
