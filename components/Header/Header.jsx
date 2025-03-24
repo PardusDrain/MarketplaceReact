@@ -1,7 +1,12 @@
 import React from 'react';
 import './Header.css';
 
-export default function Header({ setScreen, modalWindowOpened, isLoggedIn }) {
+export default function Header({
+  setScreen,
+  modalWindowOpened,
+  isLoggedIn,
+  handleLogout,
+}) {
   return (
     <>
       <header>
@@ -19,12 +24,18 @@ export default function Header({ setScreen, modalWindowOpened, isLoggedIn }) {
               Войти
             </button>
           )}
-          <button
-            onClick={() => modalWindowOpened('RegWrapper')}
-            className="regB"
-          >
-            Зарегистрироваться
-          </button>
+          {isLoggedIn ? (
+            <button onClick={handleLogout} className="logoutB">
+              Выйти
+            </button>
+          ) : (
+            <button
+              onClick={() => modalWindowOpened('RegWrapper')}
+              className="regB"
+            >
+              Зарегистрироваться
+            </button>
+          )}
         </div>
       </header>
     </>

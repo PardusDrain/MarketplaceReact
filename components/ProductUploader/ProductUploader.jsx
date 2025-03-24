@@ -48,7 +48,10 @@ const ProductUploader = ({ isLoggedIn }) => {
     <div className="product-uploader">
       <button
         className="upload-button"
-        onClick={() => document.getElementById('upload-modal').showModal()}
+        onClick={() => {
+          if (!isLoggedIn) return;
+          document.getElementById('upload-modal').showModal();
+        }}
       >
         +
       </button>

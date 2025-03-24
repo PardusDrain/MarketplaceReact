@@ -9,8 +9,8 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(btn);
-  color: var(prmry);
+  background-color: yellow;
+  color: rgb(141, 0, 228);
   border: none;
   cursor: pointer;
   font-size: 24px;
@@ -19,22 +19,20 @@
 }
 
 .upload-button:hover {
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 
 .uploaderEcho::backdrop {
-  opacity: 0.4;
+  opacity: 0.7;
   background-color: black;
 }
 
 .modal-content {
   padding: 20px;
-  background-color: rgb(117, 44, 186);
+  background-color: orange;
   display: flex;
   flex-direction: column;
-  position: fixed;
-  top: 50%;
-  left: 40%;
+
   flex-wrap: wrap;
   border-radius: 20px;
 }
@@ -54,16 +52,6 @@ form {
   justify-content: flex-end;
 }
 
-button[type='submit'] {
-  background: #28a745;
-  color: white;
-}
-
-button.cancel {
-  background: #dc3545;
-  color: white;
-}
-
 .progress-bar {
   height: 10px;
   background: #eee;
@@ -78,14 +66,14 @@ button.cancel {
 }
 
 .error-message {
-  color: #dc3545;
+  color: red;
   padding: 10px;
   background: #ffe6e6;
   border-radius: 4px;
 }
 
 .success-message {
-  color: #28a745;
+  color: green;
   padding: 10px;
   background: #e6ffe6;
   border-radius: 4px;

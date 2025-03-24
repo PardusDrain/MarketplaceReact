@@ -19,7 +19,6 @@ export default function Login({ onAuth }) {
     })
       .then((result) => result.json())
       .then((result) => {
-        console.log(result);
         localStorage.setItem('token', result.token);
         localStorage.setItem('tokenExp', result.exp);
         onAuth();

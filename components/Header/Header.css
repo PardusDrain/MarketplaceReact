@@ -1,29 +1,28 @@
 @import '../../adaptive.css';
 
-header{
-    display: flex;
-    height: 70px;
-    align-items: center;
-    
+header {
+  display: flex;
+  height: 70px;
+  align-items: center;
 }
-.nav{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
 }
 .nav li {
-    color: rgb(196, 31, 191);
+  color: rgb(141, 0, 228);
 }
-.nav li:hover{
-    background-color: rgb(29, 151, 110);
-    color: white;
-    border-radius: 40px;
-    padding:5px;
-    cursor: pointer;
-    transition: all .2s;
+.nav li:hover {
+  background-color: rgb(141, 0, 228);
+  color: white;
+  border-radius: 40px;
+  padding: 7px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.userB{
-    display: flex;
-    gap: 5px;
+.userB {
+  display: flex;
+  gap: 5px;
 }

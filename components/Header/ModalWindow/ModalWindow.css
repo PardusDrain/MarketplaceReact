@@ -5,10 +5,8 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  position: absolute;
-  bottom: 30%;
-  left: 25%;
-  background-color: var(--prmry);
+
+  background-color: rgb(202, 131, 0);
   border-radius: 10px;
   min-height: 135px;
 }
@@ -19,13 +17,12 @@
   top: 0%;
   left: 0%;
   background-color: black;
-  opacity: 0.4;
-  z-index: -1;
+  opacity: 0.7;
 }
 .modalIn {
   width: 70%;
-  background-color: rgb(209, 238, 15);
-  color: black;
+  background-color: yellow;
+  color: rgb(141, 0, 228);
   border-radius: 20px;
   padding: 5px;
   font-weight: 300;

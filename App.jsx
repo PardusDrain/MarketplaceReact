@@ -13,6 +13,14 @@ import ProductUploader from './components/ProductUploader/ProductUploader.jsx';
 export default function App() {
   const [screen, setScreen] = useState('Main');
   const [isLoggedIn, setLoggedIn] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExp');
+    setLoggedIn(false);
+    setScreen('Main');
+    setModalWindow(null);
+  };
   useEffect(() => {
     onAuth();
   }, []);
@@ -49,9 +57,10 @@ export default function App() {
         setScreen={setScreen}
         modalWindowOpened={setModalWindow}
         isLoggedIn={isLoggedIn}
+        handleLogout={handleLogout}
       />
       {screens[screen]}
-      <ProductUploader isLoggedIn={isLoggedIn} />
+      {isLoggedIn && <ProductUploader isLoggedIn={isLoggedIn} />}
       <Footer />
     </CartProvider>
   );

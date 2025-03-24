@@ -7,11 +7,19 @@
 
   .nav li {
     font-size: clamp(1rem, 3.5vw, 1.2rem);
-    padding: 0.4rem 0.7rem;
   }
 
   .userB {
     gap: var(--nav-gap);
+  }
+
+  .modalAuth,
+  .modal-content {
+    width: 90%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -23,13 +31,20 @@
 
   .nav li {
     font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-    padding: 0.5rem 1rem;
   }
 
   .userB button {
     padding: 0.6rem 1.2rem;
     font-size: 1.1rem;
     border-radius: 45px;
+  }
+
+  .modalAuth {
+    width: 400px;
+  }
+
+  .modal-content {
+    width: 500px;
   }
 }
 
@@ -41,20 +56,18 @@
 
   .nav li {
     font-size: 1.3rem;
-    padding: 0.7rem 1.2rem;
   }
 
   .userB button {
     padding: 0.7rem 1.4rem;
     font-size: 1.2rem;
   }
-}
 
-/* Сохранение оригинальных hover-эффектов */
-.nav li:hover {
-  background-color: rgb(29, 151, 110);
-  color: white;
-  border-radius: 40px;
-  padding: 5px;
-  transition: all 0.2s;
+  .modalAuth {
+    width: 450px;
+  }
+
+  .modal-content {
+    width: 600px;
+  }
 }

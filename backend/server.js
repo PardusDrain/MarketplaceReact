@@ -4,11 +4,29 @@ const DBconnect = 'mongodb://localhost:27017/ReactMarketplaceDB';
 const EXPRESS = require('express');
 const CORS = require('cors');
 const { mongoose } = require('mongoose');
-const User = require('./UserSchema');
 const ProductDB = require('./ProductSchema');
 const JWT = require('jsonwebtoken');
 const { secretKey } = require('./config');
 const ProfileSchema = require('./ProfileSchema');
+
+const authMiddleware = function (req, res, next) {
+  if (req.method === 'OPTIONS') {
+    next();
+  }
+
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'Не авторизован' });
+    }
+
+    const decoded = JWT.verify(token, secretKey);
+    req.user = decoded;
+    next();
+  } catch (e) {
+    return res.status(401).json({ message: 'Не авторизован' });
+  }
+};
 
 const generateAccessToken = (login) => {
   const payload = { login };
@@ -35,12 +53,11 @@ APP.post('/login', async (req, res) => {
     return res.status(400).json({ message: 'Неверные данные пользователя' });
   }
   const token = generateAccessToken(user.login);
-  const decoded = JWT.verify(token, secretKey);
-  console.log(decoded);
+  const payload = JWT.decode(token);
   res.json({
     message: 'Вы успешно авторизованы',
     token: token,
-    exp: decoded.exp,
+    exp: payload.exp,
   });
 });
 APP.get('/products', async (req, res) => {
@@ -79,23 +96,16 @@ APP.post('/products', upload.single('image'), async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
-APP.get('/profile', async (req, res) => {
-  let token = req.headers.authorization;
-  if (!token)
-    return res.status(401).send('Access Denied / Unauthorized request');
+APP.get('/profile', authMiddleware, async (req, res) => {
   try {
-    token = token.split(' ')[1]; // Remove Bearer
-    if (token === 'null' || !token)
-      return res.status(401).send('Unauthorized request');
-    var decoded = JWT.verify(token, secretKey);
-    console.log(decoded);
-    const profile = await ProfileSchema.findOne({ login: decoded.login });
+    console.log(req.user);
+    const profile = await ProfileSchema.findOne({ login: req.user.login });
     res.json(profile);
   } catch (err) {
     return res.status(400).json({ message: 'User not authorized' });
   }
 });
-APP.post('/update-profile', async (req, res) => {
+APP.post('/update-profile', authMiddleware, async (req, res) => {
   const resData = await ProfileSchema.findOneAndUpdate(
     { login: req.query.login },
     req.body.profile,
