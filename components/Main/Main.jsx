@@ -112,7 +112,7 @@ export default function Main() {
               className="productImg"
               alt=""
             />
-            <p className="itemName">{productItem.productName}</p>
+            <p className="itemName">{productItem.name}</p>
             <p className="itemPrice">{`${productItem.price}₽`}</p>
             {counters[productItem._id]?.visible ? (
               <div className="quantity-control">

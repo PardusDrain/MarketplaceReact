@@ -1,17 +1,16 @@
-const {Schema, model} = require('mongoose')
-
+const { Schema, model } = require('mongoose');
 
 const ProductDB = new Schema({
-  name:{
-      type: String,
-      required: true,
+  name: {
+    type: String,
+    required: true,
   },
-  img:{
-      type: String,
+  img: {
+    type: String,
   },
-  price:{
-      type: Number,
-      required: true,
-  }
-})
-  module.exports = model('ProductDB', ProductDB)
+  price: {
+    type: Number,
+    required: true,
+  },
+});
+module.exports = model('ProductDB', ProductDB);

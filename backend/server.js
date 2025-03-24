@@ -47,6 +47,38 @@ APP.get('/products', async (req, res) => {
   const serverProduct = await ProductDB.find();
   res.json({ productFetch: serverProduct });
 });
+
+// NEW POST ROUTE FOR PRODUCTS
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '../images/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
+APP.post('/products', upload.single('image'), async (req, res) => {
+  try {
+    const { name, price } = req.body;
+    let imgPath = '';
+    if (req.file) {
+      imgPath = req.file.path;
+    }
+    const newProduct = new ProductDB({
+      name,
+      img: imgPath,
+      price: Number(price),
+    });
+    await newProduct.save();
+    res.status(201).json({ message: 'Product added', product: newProduct });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 APP.get('/profile', async (req, res) => {
   let token = req.headers.authorization;
   if (!token)
