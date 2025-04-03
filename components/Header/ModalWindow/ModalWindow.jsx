@@ -1,12 +1,15 @@
 import React from 'react';
 import './ModalWindow.css';
 
-export default function ModalWindow({ modalWindowClosed, children }) {
+export default function ModalWindow({ onClose, children }) {
   return (
     <>
       <div
         className="echo"
-        onClick={() => modalWindowClosed('modalWindowClosed')}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
       ></div>
       <div className="modalAuth">{children}</div>
     </>

@@ -106,12 +106,33 @@ APP.get('/profile', authMiddleware, async (req, res) => {
   }
 });
 APP.post('/update-profile', authMiddleware, async (req, res) => {
-  const resData = await ProfileSchema.findOneAndUpdate(
-    { login: req.query.login },
-    req.body.profile,
-    { upsert: true },
-  );
-  console.log(resData);
+  try {
+    const updates = req.body.profile;
+    if (Object.values(updates).every((val) => !val)) {
+      return res
+        .status(400)
+        .json({ message: 'Заполните профиль новой информацией' });
+    }
+
+    const existingUser = await ProfileSchema.findOne({ login: updates.login });
+    if (existingUser && existingUser.login !== req.user.login) {
+      return res.status(409).json({ message: 'Логин уже занят' });
+    }
+
+    const updatedUser = await ProfileSchema.findOneAndUpdate(
+      { login: req.user.login },
+      updates,
+      { new: true },
+    );
+
+    res.json({
+      message: 'Профиль обновлен',
+      profile: updatedUser,
+    });
+  } catch (error) {
+    console.error('Ошибка обновления:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
 });
 const start = async () => {
   try {
