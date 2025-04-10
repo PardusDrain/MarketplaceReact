@@ -40,12 +40,12 @@ export default function App() {
   const [modalWindow, setModalWindow] = useState(null);
   const modalWindows = {
     LoginWrapper: (
-      <ModalWindow modalWindowClosed={setModalWindow}>
+      <ModalWindow onClose={() => setModalWindow(null)}>
         <Login onAuth={onAuth} />
       </ModalWindow>
     ),
     RegWrapper: (
-      <ModalWindow modalWindowClosed={setModalWindow}>
+      <ModalWindow onClose={() => setModalWindow(null)}>
         <Registration />
       </ModalWindow>
     ),

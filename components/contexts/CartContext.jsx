@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useCallback } from 'react';
 
-const CartContext = createContext({
+export const CartContext = createContext({
   cart: [],
   addItem: () => {},
   removeItem: () => {},

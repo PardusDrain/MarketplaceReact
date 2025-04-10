@@ -4,16 +4,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 5px;
   gap: 10px;
-
-  background-color: rgb(202, 131, 0);
+  background-color: rgb(61, 60, 59);
   border-radius: 10px;
+  z-index: 1001;
   min-height: 135px;
 }
 .echo {
   height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
   top: 0%;
   left: 0%;
   background-color: black;

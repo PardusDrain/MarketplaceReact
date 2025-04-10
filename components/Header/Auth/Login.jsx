@@ -1,7 +1,7 @@
 import React from 'react';
 import '../ModalWindow/ModalWindow.css';
 
-export default function Login({ onAuth }) {
+export default function Login({ onAuth, onClose }) {
   function LogProcedure() {
     const login = document.getElementById('putLoginL').value;
     const password = document.getElementById('putPasswordL').value;

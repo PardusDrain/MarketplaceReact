@@ -64,14 +64,6 @@ form {
   background: #01602c;
   transition: width 0.3s ease;
 }
-
-.error-message {
-  color: red;
-  padding: 10px;
-  background: #ffe6e6;
-  border-radius: 4px;
-}
-
 .success-message {
   color: green;
   padding: 10px;

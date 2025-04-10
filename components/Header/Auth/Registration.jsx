@@ -1,7 +1,7 @@
 import React from 'react';
 import '../ModalWindow/ModalWindow.css';
 
-export default function Registration() {
+export default function Registration({ onClose }) {
   function RegProcedure() {
     const login = document.getElementById('putLoginR').value;
     const password = document.getElementById('putPasswordR').value;

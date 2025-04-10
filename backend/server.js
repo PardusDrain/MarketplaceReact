@@ -2,6 +2,7 @@ const PORT = 9001;
 const DBconnect = 'mongodb://localhost:27017/ReactMarketplaceDB';
 
 const EXPRESS = require('express');
+const Order = require('./OrderSchema');
 const CORS = require('cors');
 const { mongoose } = require('mongoose');
 const ProductDB = require('./ProductSchema');
@@ -96,6 +97,49 @@ APP.post('/products', upload.single('image'), async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+// Order processing endpoint
+APP.post('/api/orders', async (req, res) => {
+  try {
+    const { city, address, firstName, lastName, total } = req.body;
+
+    // Validation checks
+    const errors = [];
+    if (!city?.trim()) errors.push('Укажите город');
+    if (!address?.trim()) errors.push('Укажите адрес');
+    if (!firstName?.trim()) errors.push('Укажите имя');
+    if (!lastName?.trim()) errors.push('Укажите фамилию');
+    if (isNaN(total) || total <= 0) errors.push('Некорректная сумма заказа');
+
+    if (errors.length > 0) {
+      return res.status(400).json({ errors });
+    }
+
+    const newOrder = new Order({
+      city: city.trim(),
+      address: address.trim(),
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      total: Number(total),
+      orderDate: new Date(),
+    });
+
+    const savedOrder = await newOrder.save();
+    res.status(201).json({
+      orderId: savedOrder._id,
+      message: 'Заказ успешно оформлен',
+    });
+  } catch (error) {
+    console.error('Ошибка при сохранении заказа:', error);
+    const statusCode = error.name === 'ValidationError' ? 400 : 500;
+    res.status(statusCode).json({
+      error:
+        statusCode === 400
+          ? 'Ошибка валидации данных: ' + error.message
+          : 'Внутренняя ошибка сервера',
+    });
+  }
+});
+
 APP.get('/profile', authMiddleware, async (req, res) => {
   try {
     console.log(req.user);
