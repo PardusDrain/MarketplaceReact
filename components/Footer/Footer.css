@@ -1,5 +1,11 @@
 @import '../../adaptive.css';
 
-footer{
-    height: 70px;
+/* Основные стили */
+footer {
+  justify-content: center;
+  border-top: 2px solid #444;
+}
+/* Стили текста  */
+.endText {
+  opacity: 0.6;
 }

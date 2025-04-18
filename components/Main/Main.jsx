@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Main.css';
-import { mockProducts } from './mockProducts';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../Basket/CartContext';
+import ProductUploader from '../ProductUploader/ProductUploader';
 
-export default function Main() {
+export default function Main({ isLoggedIn }) {
   const [productList, setProductList] = useState([]);
   const { addItem } = useCart();
   const [counters, setCounters] = useState({});
 
   useEffect(() => {
-    // // Временное использование тестовых данных
-    // setProductList(mockProducts);
-
-    // Оригинальный запрос к API
     const ProductAPI = 'http://localhost:9001/products';
     fetch(ProductAPI)
       .then((result) => result.json())
@@ -42,6 +38,7 @@ export default function Main() {
       });
   }, []);
 
+  // Эффект синхронизации счетчиков количества при изменении списка товаров
   useEffect(() => {
     const productIds = new Set(productList.map((p) => p._id));
     setCounters((prevCounters) => {
@@ -60,6 +57,7 @@ export default function Main() {
     });
   }, [productList]);
 
+  // Переключение видимости счетчика количества для товара
   const toggleCounter = (product) => {
     setCounters((prevCounters) => ({
       ...prevCounters,
@@ -70,6 +68,7 @@ export default function Main() {
     }));
   };
 
+  // Добавление товара в корзину с указанным количеством
   const handleAdd = (product) => {
     const quantity = counters[product._id]?.quantity || 1;
     addItem(product, quantity);
@@ -82,6 +81,7 @@ export default function Main() {
     }));
   };
 
+  // Увеличение количества товара
   const incrementQuantity = (product) => {
     setCounters((prev) => ({
       ...prev,
@@ -92,6 +92,7 @@ export default function Main() {
     }));
   };
 
+  // Уменьшение количества товара
   const decrementQuantity = (product) => {
     setCounters((prev) => ({
       ...prev,
@@ -139,6 +140,7 @@ export default function Main() {
           </div>
         ))}
       </main>
+      {isLoggedIn && <ProductUploader isLoggedIn={isLoggedIn} />}
     </>
   );
 }

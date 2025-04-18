@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useCallback } from 'react';
 
+// Контекст для работы с корзиной товаров
 export const CartContext = createContext({
   cart: [],
   addItem: () => {},
@@ -8,6 +9,7 @@ export const CartContext = createContext({
   dispatch: () => {},
 });
 
+// Reducer для управления состоянием корзины
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM': {
@@ -61,6 +63,7 @@ const cartReducer = (state, action) => {
   }
 };
 
+// Провайдер контекста корзины
 export const CartProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, []);
 
@@ -98,6 +101,7 @@ export const CartProvider = ({ children }) => {
   );
 };
 
+// Хук для доступа к контексту корзины
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {

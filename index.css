@@ -1,3 +1,4 @@
+/* Глобальные стили body (фон, шрифты, отступы) */
 body {
   padding: 0;
   margin: 0;
@@ -13,9 +14,18 @@ body {
   background-position: center;
   background-repeat: repeat;
   background-size: 100vh;
-  z-index: 1;
 }
+/* Основной контейнер приложения */
+.App {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Сброс стилей для основных элементов */
 dialog,
+p,
 input,
 button,
 input[type='file'] {
@@ -26,6 +36,7 @@ input[type='file'] {
   border: none;
   overflow: hidden;
 }
+/* Глобальные стили кнопок */
 button {
   cursor: pointer;
   background-color: yellow;
@@ -38,6 +49,7 @@ button:hover {
   color: white;
   transition: all 0.2s;
 }
+/* Глобальные стили полей ввода */
 input {
   font-family: inherit;
   text-align: inherit;
@@ -50,13 +62,12 @@ form {
   flex-direction: column;
   gap: 10px;
 }
-.error-message {
-  color: red;
-  padding: 5px;
-  background: #ffe6e6;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 14px;
-  white-space: nowrap;
-  text-align: center;
+li {
+  list-style-type: none;
+}
+footer,
+header {
+  display: flex;
+  background: #312f2f;
+  width: 100%;
 }

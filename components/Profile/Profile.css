@@ -2,13 +2,20 @@
   display: flex;
   justify-content: center;
 }
-.password-toggle {
+.password-toggleR {
   position: fixed;
-  right: 43.7%;
+  right: 130px;
   background: none;
   padding: 0;
   margin: 0;
 }
 .password-toggle:hover {
   padding: 3px;
+}
+.password-toggleP {
+  position: fixed;
+  left: 710px;
+  background: none;
+  padding: 0;
+  margin: 0;
 }

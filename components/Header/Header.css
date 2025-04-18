@@ -1,15 +1,15 @@
 @import '../../adaptive.css';
 
+/* Основные стили шапки сайта */
 header {
-  display: flex;
-  height: 70px;
   align-items: center;
+  border-bottom: 2px solid #444;
 }
+/* Стили навигационного меню */
 .nav {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  list-style-type: none;
 }
 .nav li {
   color: rgb(141, 0, 228);
@@ -22,7 +22,11 @@ header {
   cursor: pointer;
   transition: all 0.2s;
 }
+/* Контейнер для кнопок */
 .userB {
   display: flex;
   gap: 5px;
+}
+.logoutB {
+  margin-right: 20px;
 }

@@ -13,25 +13,23 @@ export default function Profile() {
   const [modalContent, setModalContent] = useState(null);
   const token = localStorage.getItem('token');
 
+  // Обработчик обновления данных профиля
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate empty fields
-    if (Object.values(formData).every((val) => !val)) {
-      setModalContent('Заполните профиль новой информацией');
+    const filteredProfile = Object.fromEntries(
+      Object.entries(formData).filter(([_, value]) => value.trim() !== ''),
+    );
+
+    if (Object.keys(filteredProfile).length === 0) {
+      setModalContent('Заполните поля новой информацией!');
       return;
     }
-
-    // // Validate email format
-    // if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-    //   setModalContent('Некорректный формат email');
-    //   return;
-    // }
 
     try {
       await axios.post(
         '/api/update-profile',
-        { profile: formData },
+        { profile: filteredProfile },
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -45,27 +43,35 @@ export default function Profile() {
     }
   };
 
+  // Рендер формы обновления профиля
   return (
     <div className="profile-container">
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Новый логин"
           value={formData.login}
-          onChange={(e) => setFormData({ ...formData, login: e.target.value })}
+          onChange={(e) => {
+            const englishOnly = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
+            setFormData({ ...formData, login: englishOnly });
+          }}
+          pattern="[a-zA-Z0-9]+"
         />
 
+        {/* Блок ввода пароля с переключателем видимости */}
         <div className="password-wrapper">
           <input
             type={showPassword ? 'text' : 'password'}
             placeholder="Новый пароль"
             value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
+            onChange={(e) => {
+              const englishOnly = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
+              setFormData({ ...formData, password: englishOnly });
+            }}
+            pattern="[a-zA-Z0-9]+"
           />
           <button
             type="button"
-            className="password-toggle"
+            className="password-toggleP"
             onMouseDown={() => setShowPassword(true)}
             onMouseUp={() => setShowPassword(false)}
             onMouseLeave={() => setShowPassword(false)}
@@ -77,7 +83,11 @@ export default function Profile() {
         <input
           placeholder="Новая почта"
           value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          onChange={(e) => {
+            const englishOnly = e.target.value.replace(/[^a-zA-Z0-9@._-]/g, '');
+            setFormData({ ...formData, email: englishOnly });
+          }}
+          pattern="[a-zA-Z0-9@._-]+"
         />
 
         <button type="submit" className="update-button">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ModalWindow from '../Header/ModalWindow/ModalWindow';
-import { useCart } from '../contexts/CartContext';
-import './Basket.css';
+import { useCart } from './CartContext';
+import '../Header/ModalWindow/ModalWindow.css';
 
 export default function OrderModal({ total, onClose }) {
   const { clearCart } = useCart();
@@ -13,6 +13,7 @@ export default function OrderModal({ total, onClose }) {
   const [formData, setFormData] = useState({
     cardNumber: '',
     cvc: '',
+    expiryDate: '',
     city: '',
     address: '',
     firstName: '',
@@ -26,10 +27,15 @@ export default function OrderModal({ total, onClose }) {
       if (!value.trim()) {
         newErrors[key] = 'Поле обязательно для заполнения';
       } else {
-        if (key === 'cardNumber' && !/^\d{16}$/.test(value)) {
+        if (
+          key === 'cardNumber' &&
+          !/^(\d{4}\s?){3}\d{4}$/.test(value.replace(/\s/g, ''))
+        ) {
           newErrors[key] = 'Номер карты должен содержать 16 цифр';
         } else if (key === 'cvc' && !/^\d{3}$/.test(value)) {
           newErrors[key] = 'CVC должен содержать 3 цифры';
+        } else if (key === 'expiryDate' && !/^\d{2}\/\d{2}$/.test(value)) {
+          newErrors[key] = 'Неверный формат срока действия (MM/YY)';
         } else if (
           ['firstName', 'lastName', 'city'].includes(key) &&
           !/^[А-Яа-яёЁ.]+$/.test(value)
@@ -91,12 +97,21 @@ export default function OrderModal({ total, onClose }) {
 
     if (name === 'cardNumber') {
       processedValue = value.replace(/\D/g, '').slice(0, 16);
+      // Add space every 4 digits
+      processedValue = processedValue.replace(/(\d{4})(?=\d)/g, '$1 ');
     } else if (name === 'cvc') {
       processedValue = value.replace(/\D/g, '').slice(0, 3);
     } else if (['firstName', 'lastName', 'city'].includes(name)) {
       processedValue = value.replace(/[^А-Яа-яёЁ.]/g, '');
     } else if (name === 'address') {
       processedValue = value.replace(/[^А-Яа-яёЁ.,\s]/g, '');
+    } else if (name === 'expiryDate') {
+      processedValue = value.replace(/\D/g, '');
+      if (processedValue.length > 2) {
+        processedValue =
+          processedValue.slice(0, 2) + '/' + processedValue.slice(2, 4);
+      }
+      processedValue = processedValue.slice(0, 5);
     }
 
     setFormData((prev) => ({ ...prev, [name]: processedValue }));
@@ -172,6 +187,7 @@ function getFieldLabel(key) {
     address: 'Адрес доставки',
     firstName: 'Имя',
     lastName: 'Фамилия',
+    expiryDate: 'Срок действия карты',
   };
   return labels[key];
 }
@@ -181,5 +197,9 @@ function getInputType(key) {
 }
 
 function getPlaceholder(key) {
-  return key === 'cardNumber' ? '0000 0000 0000 0000' : '';
+  return key === 'cardNumber'
+    ? '0000 0000 0000 0000'
+    : key === 'expiryDate'
+    ? 'MM/YY'
+    : '';
 }

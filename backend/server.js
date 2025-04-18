@@ -1,3 +1,4 @@
+// Конфигурация сервера
 const PORT = 9001;
 const DBconnect = 'mongodb://localhost:27017/ReactMarketplaceDB';
 
@@ -10,6 +11,7 @@ const JWT = require('jsonwebtoken');
 const { secretKey } = require('./config');
 const ProfileSchema = require('./ProfileSchema');
 
+// Проверка авторизации
 const authMiddleware = function (req, res, next) {
   if (req.method === 'OPTIONS') {
     next();
@@ -29,20 +31,49 @@ const authMiddleware = function (req, res, next) {
   }
 };
 
+// Генерация JWT токена
 const generateAccessToken = (login) => {
   const payload = { login };
   return JWT.sign(payload, secretKey, { expiresIn: '12h' });
 };
 
 const APP = EXPRESS();
-APP.use(CORS());
+APP.use(
+  CORS({
+    origin: 'http://localhost:5173',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }),
+);
 APP.use(EXPRESS.json());
-APP.post('/registration', async (req) => {
-  console.log(req.body);
-  const { login, password, email } = req.body;
-  const user = new ProfileSchema({ login, password, email });
-  await user.save();
+// Роут регистрации нового пользователя
+APP.post('/registration', async (req, res) => {
+  try {
+    const { login, password, email } = req.body;
+
+    const existingUser = await ProfileSchema.findOne({ login });
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ error: 'Пользователь с таким логином уже существует' });
+    }
+
+    const user = new ProfileSchema({ login, password, email });
+    await user.save();
+    const token = generateAccessToken(user.login);
+    const payload = JWT.decode(token);
+    res.status(201).json({
+      message: 'Регистрация успешна',
+      token: token,
+      login: user.login,
+      exp: payload.exp,
+    });
+  } catch (error) {
+    console.error('Ошибка регистрации:', error);
+    res.status(500).json({ error: 'Ошибка сервера при регистрации' });
+  }
 });
+// Роут авторизации пользователя
 APP.post('/login', async (req, res) => {
   console.log(req.body);
   const { login, password } = req.body;
@@ -61,12 +92,13 @@ APP.post('/login', async (req, res) => {
     exp: payload.exp,
   });
 });
+// Роут получения списка товаров
 APP.get('/products', async (req, res) => {
   const serverProduct = await ProductDB.find();
   res.json({ productFetch: serverProduct });
 });
 
-// NEW POST ROUTE FOR PRODUCTS
+// Роут добавления нового товара
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -78,7 +110,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-APP.post('/products', upload.single('image'), async (req, res) => {
+APP.post('/api/products', upload.single('image'), async (req, res) => {
   try {
     const { name, price } = req.body;
     let imgPath = '';
@@ -97,7 +129,8 @@ APP.post('/products', upload.single('image'), async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
-// Order processing endpoint
+
+// Роут оформления заказа
 APP.post('/api/orders', async (req, res) => {
   try {
     const { city, address, firstName, lastName, total } = req.body;
@@ -140,6 +173,20 @@ APP.post('/api/orders', async (req, res) => {
   }
 });
 
+// Роут проверки существования пользователя
+APP.get('/verify-user', authMiddleware, async (req, res) => {
+  try {
+    const user = await ProfileSchema.exists({ login: req.user.login });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ exists: true });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Роут получения данных профиля пользователя
 APP.get('/profile', authMiddleware, async (req, res) => {
   try {
     console.log(req.user);
@@ -149,7 +196,8 @@ APP.get('/profile', authMiddleware, async (req, res) => {
     return res.status(400).json({ message: 'User not authorized' });
   }
 });
-APP.post('/update-profile', authMiddleware, async (req, res) => {
+// Роут обновления данных профиля
+APP.post('/api/update-profile', authMiddleware, async (req, res) => {
   try {
     const updates = req.body.profile;
     if (Object.values(updates).every((val) => !val)) {
@@ -178,6 +226,7 @@ APP.post('/update-profile', authMiddleware, async (req, res) => {
     res.status(500).json({ message: 'Ошибка сервера' });
   }
 });
+// Запуск сервера и подключение к БД
 const start = async () => {
   try {
     await mongoose.connect(DBconnect);

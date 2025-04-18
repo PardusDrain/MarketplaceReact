@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from './CartContext';
 import OrderModal from './OrderModal';
 
 export default function Basket() {
-  const { cart, removeItem, clearCart, dispatch } = useCart();
+  const { cart, removeItem, clearCart } = useCart();
   const [showOrderModal, setShowOrderModal] = useState(false);
+  // Расчет общей суммы заказа
   const cartTotal = cart.reduce(
     (sum, item) =>
       sum + (Number(item.price) || 0) * (Number(item.quantity) || 1),
     0,
   );
 
+  // Рендер содержимого корзины и кнопок управления
   return (
     <>
       <div className="basket">
@@ -22,7 +24,7 @@ export default function Basket() {
             <ul>
               {cart.map((item) => (
                 <li key={item.cartItemId}>
-                  {item.productName} - {item.price}₽ × {item.quantity}
+                  {item.productName} {item.price}₽ × {item.quantity}
                   <button onClick={() => removeItem(item.cartItemId)}>
                     Удалить
                   </button>

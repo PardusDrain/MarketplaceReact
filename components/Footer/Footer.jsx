@@ -1,12 +1,12 @@
-import React from 'react'
-import './Footer.css'
+import React from 'react';
+import './Footer.css';
 
 export default function Footer() {
   return (
     <>
-    <footer>
-
-    </footer>
+      <footer>
+        <span className="endText">Интернет магазин сладостей "Вонка"</span>
+      </footer>
     </>
-  )
+  );
 }
