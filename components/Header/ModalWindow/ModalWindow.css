@@ -33,12 +33,12 @@
   font-weight: 300;
   font-size: 14px;
 }
-.form-group.error input {
+.formGroup.error input {
   border: 2px solid #f04040;
   margin: 5px;
 }
 /* Стили сообщений об ошибках в формах */
-.error-message {
+.errorMessage {
   color: red;
   padding: 7px;
   background: #ffe6e6;

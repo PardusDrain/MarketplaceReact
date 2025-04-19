@@ -65,7 +65,7 @@ export default function Login({ onAuth }) {
         }}
         pattern="[a-zA-Z0-9]+"
       />
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className="errorMessage">{error}</div>}
       <button onClick={LogProcedure}>Войти</button>
     </>
   );

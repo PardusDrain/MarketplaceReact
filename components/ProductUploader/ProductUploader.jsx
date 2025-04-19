@@ -43,9 +43,9 @@ const ProductUploader = ({ isLoggedIn }) => {
   };
   // Рендер кнопки добавления и модального окна формы
   return (
-    <div className="product-uploader">
+    <div className="productUploader">
       <button
-        className="upload-button"
+        className="uploadButton"
         onClick={() => {
           if (!isLoggedIn) return;
           setIsModalOpen(true);
@@ -59,11 +59,11 @@ const ProductUploader = ({ isLoggedIn }) => {
           onClose={() => setIsModalOpen(false)}
           closeOnOutsideClick={false}
         >
-          <div className="modal-content">
+          <div className="modalContent">
             <h3>Добавить новый товар</h3>
 
-            {error && <div className="error-message">{error}</div>}
-            {success && <div className="success-message">{success}</div>}
+            {error && <div className="errorMessage">{error}</div>}
+            {success && <div className="successMessage">{success}</div>}
 
             <form onSubmit={handleSubmit}>
               <input
@@ -93,7 +93,7 @@ const ProductUploader = ({ isLoggedIn }) => {
                 required
               />
 
-              <div className="form-actions">
+              <div className="formActions">
                 <button type="submit">Добавить</button>
                 <button
                   type="button"

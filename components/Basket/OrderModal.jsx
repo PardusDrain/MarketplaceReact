@@ -126,7 +126,7 @@ export default function OrderModal({ total, onClose }) {
             {Object.entries(formData).map(([key]) => (
               <div
                 key={key}
-                className={`form-group ${errors[key] ? 'error' : ''}`}
+                className={`formGroup ${errors[key] ? 'error' : ''}`}
               >
                 <label>
                   {getFieldLabel(key)}*
@@ -139,7 +139,7 @@ export default function OrderModal({ total, onClose }) {
                   />
                 </label>
                 {errors[key] && (
-                  <span className="error-message">{errors[key]}</span>
+                  <span className="errorMessage">{errors[key]}</span>
                 )}
               </div>
             ))}

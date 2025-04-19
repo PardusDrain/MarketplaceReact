@@ -115,7 +115,7 @@ export default function Main({ isLoggedIn }) {
             <p className="itemName">{productItem.name}</p>
             <p className="itemPrice">{`${productItem.price}₽`}</p>
             {counters[productItem._id]?.visible ? (
-              <div className="quantity-control">
+              <div className="quantityControl">
                 <button onClick={() => decrementQuantity(productItem)}>
                   -
                 </button>

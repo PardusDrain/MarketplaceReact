@@ -77,7 +77,7 @@ export default function Registration({ onClose }) {
         }}
         pattern="[a-zA-Z0-9]+"
       />
-      <div className="password-wrapper">
+      <div className="passwordWrapper">
         <input
           type={showPassword ? 'text' : 'password'}
           placeholder="Пароль"
@@ -90,7 +90,7 @@ export default function Registration({ onClose }) {
         />
         <button
           type="button"
-          className="password-toggleR"
+          className="passwordToggleR"
           onMouseDown={() => setShowPassword(true)}
           onMouseUp={() => setShowPassword(false)}
           onMouseLeave={() => setShowPassword(false)}
@@ -108,7 +108,7 @@ export default function Registration({ onClose }) {
         }}
         pattern="[a-zA-Z0-9@._-]+"
       />
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className="errorMessage">{error}</div>}
       <button onClick={RegProcedure} className="modalIn">
         Зарегистрироваться
       </button>

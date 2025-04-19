@@ -1,5 +1,5 @@
 /* Основной контейнер для кнопки загрузки товаров (фиксированное позиционирование) */
-.product-uploader {
+.productUploader {
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -7,7 +7,7 @@
 }
 
 /* Стили кнопки загрузки */
-.upload-button {
+.uploadButton {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -20,7 +20,7 @@
   transition: transform 0.2s;
 }
 
-.upload-button:hover {
+.uploadButton:hover {
   transform: scale(1.3);
 }
 
@@ -30,7 +30,7 @@
 }
 
 /* Стили контейнера модального окна для формы загрузки */
-.modal-content {
+.modalContent {
   padding: 20px;
   background-color: rgb(83, 83, 83);
   display: flex;
@@ -39,7 +39,7 @@
   border-radius: 20px;
 }
 
-.modal-content input {
+.modalContent input {
   border-radius: 20px;
 }
 /* Расположение элементов формы в колонку */
@@ -50,12 +50,12 @@ form {
 }
 
 /* Расположение кнопок формы */
-.form-actions {
+.formActions {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
 }
-.success-message {
+.successMessage {
   color: green;
   padding: 10px;
   background: #e6ffe6;

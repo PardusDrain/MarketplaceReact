@@ -14,7 +14,7 @@
   }
 
   .modalAuth,
-  .modal-content {
+  .modalContent {
     width: 90%;
     position: fixed;
     top: 50%;
@@ -43,7 +43,7 @@
     width: 400px;
   }
 
-  .modal-content {
+  .modalContent {
     width: 500px;
   }
 }
@@ -67,7 +67,7 @@
     width: 450px;
   }
 
-  .modal-content {
+  .modalContent {
     width: 600px;
   }
 }

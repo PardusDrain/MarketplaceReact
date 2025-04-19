@@ -45,7 +45,7 @@ export default function Profile() {
 
   // Рендер формы обновления профиля
   return (
-    <div className="profile-container">
+    <div className="profileContainer">
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Новый логин"
@@ -58,7 +58,7 @@ export default function Profile() {
         />
 
         {/* Блок ввода пароля с переключателем видимости */}
-        <div className="password-wrapper">
+        <div className="passwordWrapper">
           <input
             type={showPassword ? 'text' : 'password'}
             placeholder="Новый пароль"
@@ -71,7 +71,7 @@ export default function Profile() {
           />
           <button
             type="button"
-            className="password-toggleP"
+            className="passwordToggleP"
             onMouseDown={() => setShowPassword(true)}
             onMouseUp={() => setShowPassword(false)}
             onMouseLeave={() => setShowPassword(false)}
@@ -90,7 +90,7 @@ export default function Profile() {
           pattern="[a-zA-Z0-9@._-]+"
         />
 
-        <button type="submit" className="update-button">
+        <button type="submit" className="updateButton">
           Обновить профиль
         </button>
       </form>
