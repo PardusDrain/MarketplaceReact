@@ -24,7 +24,6 @@ export default function Main({ isLoggedIn }) {
             .filter((p) => !isNaN(p.price)),
         );
 
-        // Synchronize counters with current product list
         const productIds = new Set(productList.map((p) => p._id));
         setCounters((prevCounters) => {
           const syncedCounters = {};
