@@ -131,8 +131,7 @@ export default function Main({ isLoggedIn }) {
                 onClick={() => {
                   handleAdd(productItem);
                   toggleCounter(productItem);
-                }}
-              >
+                }}>
                 В корзину
               </button>
             )}
