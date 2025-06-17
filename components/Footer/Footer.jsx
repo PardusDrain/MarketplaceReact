@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <>
       <footer>
-        <span className="endText">Интернет магазин сладостей "Вонка"</span>
+        <span className="endText">Интернет магазин сладостей</span>
       </footer>
     </>
   );
