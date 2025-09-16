@@ -40,7 +40,14 @@ const generateAccessToken = (login) => {
 const APP = EXPRESS();
 APP.use(
   CORS({
-    origin: 'http://localhost:5173',
+    origin: (origin, callback) => {
+      // Разрешение  использования любого адреса на localhost
+      if (/^https?:\/\/localhost(:\d+)?$/.test(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
   }),
